@@ -1,0 +1,75 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+        
+#creating linked list
+
+class linkedlist:
+    def __init__(self,data):
+        newnode=node(data)
+        self.head=newnode
+        self.tail=newnode
+        self.length=1
+
+    def append(self,data):
+        newnode=node(data)
+        if self.length==0:
+            self.head=newnode
+            self.tail=newnode
+        else:
+            self.tail.next=newnode
+            self.tail=newnode
+            self.length+=1
+
+    def insert(self,pos,data):
+        newnode=node(data)
+        temp=self.head
+        for i in range(pos-1):
+            temp=temp.next
+        newnode.data=data
+        newnode.next=temp.next
+        temp.next=newnode
+        self.length+=1
+
+#reversing a linked list
+
+    def reverse(self):
+        temp=self.head
+        self.head=self.tail
+        self.tail=temp
+        after=temp.next
+        before=None
+        for i in range(self.length):
+            after=temp.next
+            temp.next=before
+            before=temp
+            temp=after
+
+    def traversal(self):
+        if self.head==None:
+            print("list is empty")
+        else:
+            temp=self.head
+            while temp is not None:
+                print(temp.data,end="-->")
+                temp=temp.next
+
+s=linkedlist(5)
+s.append(6)
+s.append(7)
+s.insert(1,2)
+print("before traversal")
+s.traversal()
+s.reverse()
+print("\nafter traversal")
+s.traversal()
+
+
+output:
+
+before traversal
+5-->2-->6-->7-->
+after traversal
+7-->6-->2-->5-->
+
