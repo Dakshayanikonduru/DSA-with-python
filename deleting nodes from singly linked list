@@ -1,0 +1,99 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+        
+#creating linked list
+
+class linkedlist:
+    def __init__(self,data):
+        newnode=node(data)
+        self.head=newnode
+        self.tail=newnode
+        self.length=1
+
+    def append(self,data):
+        newnode=node(data)
+        if self.length==0:
+            self.head=newnode
+            self.tail=newnode
+        else:
+            self.tail.next=newnode
+            self.tail=newnode
+            self.length+=1
+    def insert(self,pos,data):
+        newnode=node(data)
+        temp=self.head
+        for i in range(pos-1):
+            temp=temp.next
+        newnode.data=data
+        newnode.next=temp.next
+        temp.next=newnode
+        self.length+=1
+    def reverse(self):
+        temp=self.head
+        self.head=self.tail
+        self.tail=temp
+        after=temp.next
+        before=None
+        for i in range(self.length):
+            after=temp.next
+            temp.next=before
+            before=temp
+            temp=after
+    def traversal(self):
+        if self.head==None:
+            print("list is empty")
+        else:
+            temp=self.head
+            while temp is not None:
+                print(temp.data,end="-->")
+                temp=temp.next
+
+#removing node at the beginning
+
+    def pop(self):
+        temp=self.head
+        self.head=temp.next
+        temp.next=None
+        self.length-=1
+
+#removing node at the end
+
+    def poplast(self):
+        temp=self.head
+        prev=self.head
+        while temp.next:
+            prev=temp
+            temp=temp.next
+        self.tail=prev
+        self.tail.next=None
+        self.length-=1
+
+s=linkedlist(5)
+s.append(6)
+s.append(7)
+s.insert(1,2)
+print("before reversing")
+s.traversal()
+s.reverse()
+print("\nafter reversing")
+s.traversal()
+s.pop()
+print("\nafter removing node at first")
+s.traversal()
+s.poplast()
+print("\nafter removing node at end")
+s.traversal()
+
+
+output:
+
+before reversing
+5-->2-->6-->7-->
+after reversing
+7-->6-->2-->5-->
+after removing node at first
+6-->2-->5-->
+after removing node at end
+6-->2-->
