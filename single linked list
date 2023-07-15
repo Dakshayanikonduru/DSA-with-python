@@ -11,14 +11,14 @@ class linkedlist:
     def __init__(self):
         self.head=None
         
-#prepend (inserting elements at the beginning)
+#prepend (inserting node at the beginning)
     
     def prepend(self,data):
         newnode=node(data)
         newnode.next=self.head
         self.head=newnode
         
-#append (inserting elements at the ending)
+#append (inserting node at the ending)
 
     def append(self,data):
         newnode=node(data)
@@ -27,7 +27,7 @@ class linkedlist:
             temp=temp.next
         temp.next=newnode
         
-#insert at the position
+#inserting node at the specified position
 
     def insert(self,pos,data):
         newnode=node(data)
@@ -38,7 +38,7 @@ class linkedlist:
         newnode.next=temp.next
         temp.next=newnode
         
-#printing elements
+#printing nodes
     
     def traversal(self):
         if self.head==None:
@@ -49,7 +49,7 @@ class linkedlist:
                 print(temp.data,end="-->")
                 temp=temp.next
                 
-#counting no.of elements
+#counting no.of nodes
 
     def counting(self):
         print("\n")
